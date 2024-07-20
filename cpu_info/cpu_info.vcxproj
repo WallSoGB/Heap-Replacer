@@ -7,7 +7,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="d3dx9_38_exports.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -42,7 +41,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)binaries\$(Configuration)\$(ProjectName)\$(Arch)\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(Configuration)\$(ProjectName)\$(Arch)\</IntDir>
-    <TargetName>d3dx9_38</TargetName>
+    <TargetName>nvhr</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -71,9 +70,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <ModuleDefinitionFile>exports.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "$(HR_GAME_DIR)\$(TargetFileName)"</Command>
+      <Command>copy "$(TargetPath)" "$(HR_GAME_DIR)\Data\NVSE\Plugins\$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

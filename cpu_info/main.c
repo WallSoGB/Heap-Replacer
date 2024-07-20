@@ -131,34 +131,35 @@ end:
     return ret;
 }
 
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved)
-{
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD fdwReason, LPVOID lpReserved) {
+    return TRUE;
+}
+
+
+__declspec(dllexport) char NVSEPlugin_Preload() {
     int iset;
-    char buff[MAX_PATH] = "Data\\" HR_NAME "\\";
+    char buff[MAX_PATH]   = "Data\\NVSE\\Plugins\\NVHR\\";
 
-    if (fdwReason == DLL_PROCESS_ATTACH)
+    if (!file_exists("d3dx9_38.tmp"))
     {
-        if (!file_exists("d3dx9_38.tmp"))
-        {
-            create_console();
-        }
+        create_console();
+    }
 
-        DisableThreadLibraryCalls(hModule);
+    DisableThreadLibraryCalls(GetModuleHandle(NULL));
 
-        iset = get_min_iset();
-        strcat(buff, iset_names[iset]);
-        printf("\nsearching for %s... ", buff);
-        if (file_exists(buff))
-        {
-            printf("found!\n\n");
-            LoadLibraryA(buff);
-        }
-        else
-        {
-            printf("not found!\n\n");
-            HR_MSGBOX("No valid HR binary found in Data/" HR_NAME "!",
-                      MB_ICONERROR);
-        }
+    iset = get_min_iset();
+    strcat(buff, iset_names[iset]);
+    printf("\nsearching for %s... ", buff);
+    if (file_exists(buff))
+    {
+        printf("found!\n\n");
+        LoadLibraryA(buff);
+    }
+    else
+    {
+        printf("not found!\n\n");
+        HR_MSGBOX("No valid HR binary found in Data/NVSE/Plugins!",
+                  MB_ICONERROR);
     }
 
     return TRUE;

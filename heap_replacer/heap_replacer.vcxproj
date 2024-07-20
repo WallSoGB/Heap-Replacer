@@ -74,7 +74,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(TargetPath)" "$(HR_GAME_DIR)\Data\$(HR_NAME)\$(TargetFileName)"</Command>
+      <Command>copy "$(TargetPath)" "$(HR_GAME_DIR)\Data\NVSE\Plugins\$(HR_NAME)\$(TargetFileName)"</Command>
     </PostBuildEvent>
     <ProjectReference>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>

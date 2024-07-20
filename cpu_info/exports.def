@@ -1,0 +1,3 @@
+LIBRARY	"nvhr"
+EXPORTS
+NVSEPlugin_Preload
